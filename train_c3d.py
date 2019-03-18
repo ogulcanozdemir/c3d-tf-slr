@@ -166,6 +166,8 @@ def run_training(params):
         # Create a saver for writing training checkpoints.
         saver = tf.compat.v1.train.Saver(varlist1)
         init = tf.compat.v1.global_variables_initializer()
+        
+        saver_2 = tf.compat.v1.train.Saver(list(weights.values()) + list(biases.values()))
 
         sess = tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(allow_soft_placement=True))
         sess.run(init)
@@ -203,7 +205,7 @@ def run_training(params):
 
             # Save a checkpoint and evaluate the model periodically.
             if step % 10 == 0 or (step + 1) == params.max_steps:
-                saver.save(sess, os.path.join(params.model_save_dir), global_step=step)
+                saver_2.save(sess, os.path.join(params.model_save_dir), global_step=step)
                 print('Training Data Eval:', end='')
                 summary, acc = sess.run(
                     [merged, accuracy],
