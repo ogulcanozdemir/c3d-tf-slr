@@ -1,0 +1,15 @@
+--max-steps=5000
+--batch-size=10
+--num-classes=154
+--crop-size=112
+--channels=3
+--num-frames-per-clip=16
+--model-save-dir=checkpoints
+--moving-average-decay=0.9999
+--num-gpu=1
+--save-model=c3d_general_model
+--train-list=list/general/train.list
+--test-list=list/general/test.list
+--crop-mean=models/crop_mean_16.npy
+--pretrained-weights=models/conv3d_deepnetA_sport1m_iter_1900000_TF.model
+--log-path=visual_logs

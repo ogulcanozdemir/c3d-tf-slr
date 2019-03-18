@@ -115,3 +115,5 @@ dmypy.json
 
 .vscode/
 .idea/
+models/conv3d_deepnetA_sport1m_iter_1900000_TF.model
+checkpoints/
