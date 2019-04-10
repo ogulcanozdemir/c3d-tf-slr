@@ -201,7 +201,7 @@ def run_training(params):
                 labels_placeholder: train_labels
             })
             duration = time.time() - start_time
-            print('Step %d: %.3f sec' % (step, duration))
+            print('Step %d: %.3f sec' % (step, duration), flush=True)
 
             # Save a checkpoint and evaluate the model periodically.
             if step % 10 == 0 or (step + 1) == params.max_steps:
@@ -229,7 +229,7 @@ def run_training(params):
                         images_placeholder: val_images,
                         labels_placeholder: val_labels
                     })
-                print(" accuracy: " + "{:.5f}".format(acc))
+                print(" accuracy: " + "{:.5f}".format(acc), flush=True)
                 test_writer.add_summary(summary, step)
         print("done")
 

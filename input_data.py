@@ -25,7 +25,7 @@ def get_frames_data(filename, num_frames_per_clip=16):
 		for i in range(s_index, s_index + num_frames_per_clip):
 			image_name = str(filename) + '/' + str(filenames[i])
 			img = Image.open(image_name)
-			img_data = np.array(img)
+			img_data = np.array(img)[:, 420:-420]
 			ret_arr.append(img_data)
 			
 	return ret_arr, s_index

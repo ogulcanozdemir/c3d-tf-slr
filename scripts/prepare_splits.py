@@ -1,8 +1,8 @@
 import os
 
 
-datapath = 'D:\\Databases\\BosphorusSign\\General_frames'
-classdir = sorted(list(map(int, os.listdir(datapath))))
+datapath = '/truba/home/ogozdemir/data/BosphorusSignV2/General/'
+classdir = sorted(list(map(str, os.listdir(datapath))))
 
 class_indices = {item: i for i, item in enumerate(classdir, 0)}
 class_indices_file = open('../list/general/class_indices.list', 'w')
@@ -21,9 +21,9 @@ for _clazz in classdir:
 
         print(str(_clazz) + '-' + _user)
         if _user_split[1] != '4':
-            train_split_file.write(os.path.join(datapath, str(_clazz), _user) + ' ' + str(class_indices[_clazz]) + '\n')
+            train_split_file.write(os.path.join(datapath, str(_clazz), _user, 'frames') + ' ' + str(class_indices[_clazz]) + '\n')
         else:
-            test_split_file.write(os.path.join(datapath, str(_clazz), _user)  + ' ' + str(class_indices[_clazz]) + '\n')
+            test_split_file.write(os.path.join(datapath, str(_clazz), _user, 'frames') + ' ' + str(class_indices[_clazz]) + '\n')
 
 train_split_file.close()
 test_split_file.close()

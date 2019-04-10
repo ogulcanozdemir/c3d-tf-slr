@@ -18,13 +18,13 @@ def compute_volume_mean(train_lst, num_frames=16, new_w_h_size=112):
 		length = list_length(train_lst)
 		
 		for idx, line in enumerate(f):
-			print('Reading line {}/{}'.format(idx, length))
+			print('Reading line {}/{}'.format(idx, length), flush=True)
 			vid_path = line.split()[0]
 			stack_frames = []
 
 			for i in range(1, num_frames+1):
-				img = cv2.imread(os.path.join(vid_path, "{:05}.jpg".format(i)))
-				img = cv2.resize(img, (new_w_h_size, new_w_h_size))
+				img = cv2.imread(os.path.join(vid_path, "frames_{:04}.jpg".format(i)))
+				img = cv2.resize(img[:, 420:-420, :], (new_w_h_size, new_w_h_size))
 				stack_frames.append(img)
 
 			stack_frames = np.array(stack_frames)
@@ -37,5 +37,6 @@ def compute_volume_mean(train_lst, num_frames=16, new_w_h_size=112):
 
 
 if __name__ == '__main__':
-	mean_general_16 = compute_volume_mean('list/general/train.list')
-	np.save('crop_mean_16.npy', mean_general_16)
+	mean_general_16 = compute_volume_mean('/truba/home/ogozdemir/code/c3d-tf-slr/list/general/train.list')
+	np.save('crop_mean_16_generalv2.npy', mean_general_16)
+	print('Done', flush=True)
